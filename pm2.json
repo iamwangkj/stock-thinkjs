@@ -1,0 +1,15 @@
+{
+  "apps": [{
+    "name": "stock-thinkjs",
+    "script": "production.js",
+    "cwd": "/Users/wangkj/Desktop/stock-thinkjs",
+    "exec_mode": "fork",
+    "max_memory_restart": "1G",
+    "autorestart": true,
+    "node_args": [],
+    "args": [],
+    "env": {
+      
+    }
+  }]
+}
