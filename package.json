@@ -2,38 +2,34 @@
   "name": "stock-thinkjs",
   "description": "application created by thinkjs",
   "version": "1.0.0",
-  "author": "wangkj <ne.wkj@qq.com>",
+  "author": "wangkj",
   "scripts": {
-    "dev": "node development.js",
     "start": "node development.js",
-    "compile": "npm run lint && tsc",
-    "lint": "eslint --fix --ext .js,ts ./"
+    "test": "THINK_UNIT_TEST=1 nyc ava test/ && nyc report --reporter=html",
+    "lint": "eslint src/",
+    "lint-fix": "eslint --fix src/"
   },
   "dependencies": {
-    "think-cache": "^1.1.1",
-    "think-cache-file": "^1.1.1",
-    "think-session": "^1.1.5",
-    "think-session-file": "^1.1.2",
-    "think-view": "^1.0.12",
-    "think-view-nunjucks": "^1.0.10",
-    "thinkjs": "^3.2.11",
-    "thinkjs3-ts": "^1.0.1"
+    "think-cache": "^1.0.0",
+    "think-session": "^1.0.0",
+    "think-cache-file": "^1.0.8",
+    "think-model": "^1.0.0",
+    "think-session-file": "^1.0.5",
+    "think-view": "^1.0.0",
+    "think-view-nunjucks": "^1.0.1",
+    "think-model-mysql": "^1.0.0",
+    "think-logger3": "^1.0.0",
+    "thinkjs": "^3.0.0"
   },
   "devDependencies": {
-    "@types/koa": "*",
-    "@typescript-eslint/eslint-plugin": "^4.8.1",
-    "@typescript-eslint/parser": "^4.8.1",
-    "eslint": "^7.13.0",
+    "ava": "^0.18.0",
+    "eslint": "^7.14.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
-    "node-notifier": "^5.0.2",
-    "think-inspect": "0.0.2",
-    "think-typescript": "^1.0.4",
-    "think-watcher": "^3.0.0",
-    "tslint": "^5.8.0",
-    "typescript": "^4.0.5"
+    "nyc": "^7.0.0",
+    "think-watcher": "^3.0.0"
   },
   "repository": "",
   "license": "MIT",
@@ -45,11 +41,12 @@
     "metadata": {
       "name": "stock-thinkjs",
       "description": "application created by thinkjs",
-      "author": "wangkj <ne.wkj@qq.com>",
-      "defaultModule": "home"
+      "author": "wangkj",
+      "babel": false,
+      "defaultModule": "crontab"
     },
     "projectName": "stock-thinkjs",
-    "template": "typescript",
+    "template": "/usr/local/lib/node_modules/think-cli/default_template",
     "clone": false,
     "isMultiModule": true
   }
