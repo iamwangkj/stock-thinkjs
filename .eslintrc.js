@@ -14,6 +14,7 @@ module.exports = {
     ecmaVersion: 12
   },
   rules: {
-    'no-unused-vars': 'warn'
+    'no-unused-vars': 'warn',
+    camelcase: 'off'
   }
 }

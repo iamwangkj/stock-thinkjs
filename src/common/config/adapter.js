@@ -36,13 +36,13 @@ exports.model = {
   },
   mysql: {
     handle: mysql,
-    database: '',
-    prefix: 'think_',
+    database: 'stock',
+    prefix: '',
     encoding: 'utf8',
     host: '127.0.0.1',
     port: '',
     user: 'root',
-    password: 'root',
+    password: '12345678',
     dateStrings: true
   }
 }
