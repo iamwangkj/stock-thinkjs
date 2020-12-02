@@ -1,7 +1,8 @@
-const path = require('path')
+import 'thinkjs3-ts'
+import path from 'path'
 const isDev = think.env === 'development'
 
-module.exports = [
+export = [
   {
     handle: 'meta',
     options: {
@@ -27,6 +28,7 @@ module.exports = [
   {
     handle: 'payload',
     options: {
+      uploadDir: path.join(think.RUNTIME_PATH, '_tmp'),
       keepExtensions: true,
       limit: '5mb'
     }
@@ -37,4 +39,4 @@ module.exports = [
   },
   'logic',
   'controller'
-]
+];

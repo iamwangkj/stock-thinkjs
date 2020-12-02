@@ -16,6 +16,6 @@ function check (list) {
   console.log(`总(${list.length})，涨跌比(${upList.length}:${downList.length})`)
 }
 
-module.exports = {
+export default {
   check
 }

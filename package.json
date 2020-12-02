@@ -6,44 +6,33 @@
   "scripts": {
     "dev": "node development.js",
     "start": "node development.js",
-    "test": "THINK_UNIT_TEST=1 nyc ava test/ && nyc report --reporter=html",
-    "lint": "eslint src/",
-    "lint-fix": "eslint --fix src/"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "src/*.{js,ts}": [
-      "eslint --fix",
-      "git add"
-    ]
+    "compile": "npm run lint && tsc",
+    "lint": "tslint \"src/**/*.ts\""
   },
   "dependencies": {
     "axios": "^0.21.0",
-    "think-cache": "^1.0.0",
-    "think-cache-file": "^1.0.8",
-    "think-logger3": "^1.0.0",
-    "think-model": "^1.0.0",
-    "think-model-mysql": "^1.0.0",
-    "think-session": "^1.0.0",
-    "think-session-file": "^1.0.5",
-    "think-view": "^1.0.0",
-    "think-view-nunjucks": "^1.0.1",
-    "thinkjs": "^3.0.0"
+    "dayjs": "^1.9.6",
+    "think-cache": "^1.1.1",
+    "think-cache-file": "^1.1.1",
+    "think-model": "^1.5.1",
+    "think-model-mysql": "^1.1.4",
+    "think-session": "^1.1.5",
+    "think-session-file": "^1.1.2",
+    "think-view": "^1.0.12",
+    "think-view-nunjucks": "^1.0.10",
+    "thinkjs": "^3.2.11",
+    "thinkjs3-ts": "^1.0.1"
   },
   "devDependencies": {
-    "ava": "^0.18.0",
+    "@typescript-eslint/eslint-plugin": "^4.9.0",
+    "@typescript-eslint/parser": "^4.9.0",
     "eslint": "^7.14.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
-    "husky": "^4.3.0",
-    "lint-staged": "^10.5.1",
-    "nyc": "^7.0.0",
+    "node-notifier": "^5.0.2",
+    "think-typescript": "^1.0.4",
     "think-watcher": "^3.0.0"
   },
   "repository": "",
@@ -56,13 +45,11 @@
     "metadata": {
       "name": "stock-thinkjs",
       "description": "application created by thinkjs",
-      "author": "wangkj",
-      "babel": false,
-      "defaultModule": "crontab"
+      "author": "wangkj"
     },
     "projectName": "stock-thinkjs",
-    "template": "/usr/local/lib/node_modules/think-cli/default_template",
+    "template": "typescript",
     "clone": false,
-    "isMultiModule": true
+    "isMultiModule": false
   }
 }

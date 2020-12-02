@@ -74,7 +74,6 @@ async function getTodayAll () {
   }
   return resArr
 }
-// getTodayAll()
 
 // 获取某只股票半年的历史行情
 function getHistory (code) {
@@ -115,7 +114,7 @@ function getHistory (code) {
 }
 // getHistory('300100')
 
-module.exports = {
+export default {
   getHistoryByDate,
   getTodayAll,
   getHistory

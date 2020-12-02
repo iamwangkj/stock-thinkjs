@@ -35,6 +35,6 @@ function macd (ticks) {
   }
 }
 
-module.exports = {
+export default {
   macd
 }

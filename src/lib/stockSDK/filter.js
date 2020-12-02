@@ -84,7 +84,7 @@ function getHighRatio (list, huanshoulv = 5) {
   })
 }
 
-module.exports = {
+export default {
   removeST,
   removeKechuang,
   getRedT,

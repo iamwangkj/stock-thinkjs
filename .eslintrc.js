@@ -1,8 +1,6 @@
 module.exports = {
   env: {
-    commonjs: true,
-    es2021: true,
-    node: true
+    es2021: true
   },
   globals: {
     think: 'readonly'
@@ -10,11 +8,15 @@ module.exports = {
   extends: [
     'standard'
   ],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 12
+    ecmaVersion: 12,
+    sourceType: 'module'
   },
+  plugins: [
+    '@typescript-eslint'
+  ],
   rules: {
-    'no-unused-vars': 'warn',
     camelcase: 'off'
   }
 }
