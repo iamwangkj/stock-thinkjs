@@ -3,6 +3,7 @@ import stockSDK from '../../lib/stockSDK'
 import dayjs from 'dayjs'
 
 export default class extends baseController {
+  // 对数据分块，方便多条插入数据库。数据库多条插入上限20
   chunk (arr:Array<any>, size:number = 10) {
     const res = Array.from(
       { length: Math.ceil(arr.length / size) },
