@@ -2,6 +2,8 @@ import baseController from '../base'
 import axios from 'axios'
 import cheerio from 'cheerio'
 
+import { think } from 'thinkjs'
+
 export default class extends baseController {
   async saveAction () {
     try {
@@ -9,16 +11,20 @@ export default class extends baseController {
       const url = 'http://www.gov.cn/zhengce/index.htm'
       const res = await axios.get(url)
       const $ = cheerio.load(res.data)
-      $('.latestPolicy_left_item a').each((index, el) => {
-        const title = $(el).text()
-        const url = $(el).attr('href')
+      $('.latestPolicy_left_item').each((index, el) => {
+        const a = $(el).find('a')
+        const title = a.text()
+        const url = a.attr('href')
+        const date = $(el).find('span').text()
         const item = {
           title,
-          url: /http|https/.test(url) ? url : `http://www.gov.cn${url}`
+          url: /http|https/.test(url) ? url : `http://www.gov.cn${url}`,
+          date
         }
         resList.push(item)
       })
-      const model = this.model('policy_for_gwy')
+      // const model = this.model('policy_for_gwy')
+      const model = this.mongo('policy_for_gwy')
       let row = 0
       let isEnd = false
       let i = 0
@@ -36,7 +42,7 @@ export default class extends baseController {
       }
       return this.success(null, `insert ${row} row`)
     } catch (error) {
-      // return this.fail(-1, error.message)
+      return this.fail(-1, error.message)
     }
   }
 }

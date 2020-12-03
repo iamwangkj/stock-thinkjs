@@ -5,7 +5,7 @@ const watcher = require('think-watcher')
 const notifier = require('node-notifier')
 const instance = new Application({
   ROOT_PATH: __dirname,
-  APP_PATH: path.join(__dirname, 'app'),
+  APP_PATH: path.join(__dirname, 'dist'),
   watcher: watcher,
   transpiler: [typescript, {
     compilerOptions: {

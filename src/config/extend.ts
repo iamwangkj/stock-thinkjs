@@ -1,11 +1,11 @@
 import view from 'think-view'
 import cache from 'think-cache'
 import session from 'think-session'
-import model from 'think-model'
+import thinkMongo from 'think-mongo'
 
 export = [
   view,
   cache,
   session,
-  model(think.app)
+  thinkMongo(think.app)
 ];

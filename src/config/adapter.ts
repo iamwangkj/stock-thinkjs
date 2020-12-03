@@ -46,32 +46,21 @@ export const view = {
 }
 
 export const model = {
-  type: 'mysql', // 默认使用的类型，调用时可以指定参数切换
+  type: 'mongo', // 默认使用的类型，调用时可以指定参数切换
   common: { // 通用配置
     logConnect: true, // 是否打印数据库连接信息
-    logSql: true, // 是否打印 SQL 语句
     logger: msg => think.logger.info(msg) // 打印信息的 logger
   },
-  mysql: { // mysql 配置
-    handle: mysql,
-    database: 'stock',
-    prefix: '',
-    encoding: 'utf8mb4',
+  mongo: {
     host: '127.0.0.1',
-    port: 3306,
-    user: 'root',
-    password: '12345678',
-    connectionLimit: 10,
-    dateStrings: true,
-    charset: 'utf8mb4'
-  },
-  mysql2: { // 另一个 mysql 的配置
-    handle: mysql
-  },
-  sqlite: { // sqlite 配置
-
-  },
-  postgresql: { // postgresql 配置
-
+    port: 27017,
+    user: '',
+    password: '',
+    database: 'stock', // 数据库名称
+    options: {
+      // 身份验证相关
+      // replicaSet: 'mgset-3074013',
+      // authSource: 'admin'
+    }
   }
 }
