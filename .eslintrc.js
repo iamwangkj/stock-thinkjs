@@ -3,7 +3,8 @@ module.exports = {
     es2021: true
   },
   globals: {
-    think: 'readonly'
+    think: 'readonly',
+    mongo: 'readonly'
   },
   extends: [
     'standard'

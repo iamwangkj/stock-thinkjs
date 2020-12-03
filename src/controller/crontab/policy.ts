@@ -2,8 +2,6 @@ import baseController from '../base'
 import axios from 'axios'
 import cheerio from 'cheerio'
 
-import { think } from 'thinkjs'
-
 export default class extends baseController {
   async saveAction () {
     try {
@@ -23,19 +21,18 @@ export default class extends baseController {
         }
         resList.push(item)
       })
-      // const model = this.model('policy_for_gwy')
       const model = this.mongo('policy_for_gwy')
       let row = 0
       let isEnd = false
       let i = 0
       while (!isEnd) {
         const item = resList[i]
-        const { title, url } = item
+        const { title, url, date } = item
         const data = await model.where({ title }).find()
         if (think.isEmpty(data)) { // 如果数据库中没有找到该政策，即保存
           row = row + 1
           console.log('数据库中没有该政策=', i)
-          await model.add({ title, url })
+          await model.add({ title, url, date })
           // 发通知，有新的政策发布了
         }
         i < resList.length - 1 ? ++i : isEnd = true
