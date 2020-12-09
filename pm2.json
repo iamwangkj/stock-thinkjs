@@ -2,7 +2,7 @@
   "apps": [{
     "name": "stock-thinkjs",
     "script": "production.js",
-    "cwd": "/root/git/stock-thinkjs",
+    "cwd": "./",
     "exec_mode": "fork",
     "max_memory_restart": "1G",
     "autorestart": true,
