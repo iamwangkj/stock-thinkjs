@@ -11,7 +11,7 @@ export default [{
   handle: 'crontab/policy/save',
   type: 'all'
 }, {
-  cron: '* 15 * * *',
+  cron: '0 15 * * *',
   handle: 'crontab/stock/saveAll',
   type: 'all'
 }]
