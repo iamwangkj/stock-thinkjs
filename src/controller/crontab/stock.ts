@@ -12,10 +12,10 @@ export default class extends baseController {
     return res
   }
 
-  async getAllAction () {
+  async saveAllAction () {
     try {
       const allList = await stockSDK.collector.getTodayAll()
-      const model_stock_history = this.model('stock_history')
+      const model_stock_history = this.mongo('stock_history')
       const insertList = allList.map((item) => {
         const { code, name, open, high, low, trade, volume, amount, per, pb, mktcap, nmc, turnoverratio } = item
         return {

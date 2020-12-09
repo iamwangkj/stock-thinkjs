@@ -34,7 +34,7 @@ export default class extends baseController {
       const pageTotal:number = $('.pagenavi-cm .page-numbers.current').text()
       console.log('pageTotal=', pageTotal)
 
-      const model = this.mongo('girl_street')
+      const model = this.mongo('girl_zipai')
       let i = 1
       let isEnd = false
       while (!isEnd) {
@@ -44,23 +44,7 @@ export default class extends baseController {
         await this.sleep(3000)
         i < pageTotal ? ++i : isEnd = true
       }
-
-      // const model = this.mongo('girl_img')
-      // let row = 0
-      // let isEnd = false
-      // let i = 0
-      // while (!isEnd) {
-      //   const { title, url } = resList[i]
-      //   const data = await model.where({ title }).find()
-      //   if (think.isEmpty(data)) { // 如果数据库中没有找到该政策，即保存
-      //     row = row + 1
-      //     console.log('数据库中没有该政策=', i)
-      //     await model.add({ title, url })
-      //     // 发通知，有新的政策发布了
-      //   }
-      //   i < resList.length - 1 ? ++i : isEnd = true
-      // }
-      // return this.success(null, `insert ${row} row`)
+      return false
     } catch (error) {
       return this.fail(-1, error.message)
     }

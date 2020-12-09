@@ -4,6 +4,8 @@ import nunjucks from 'think-view-nunjucks'
 import fileSession from 'think-session-file'
 import fileCache from 'think-cache-file'
 
+const isDev = think.env === 'development'
+
 export const cache = {
   type: 'file',
   common: {

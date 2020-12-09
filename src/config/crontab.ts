@@ -10,4 +10,8 @@ export default [{
   cron: '1/* * * * *', // 每小时执行一次
   handle: 'crontab/policy/save',
   type: 'all'
+}, {
+  cron: '* 15 * * *',
+  handle: 'crontab/stock/saveAll',
+  type: 'all'
 }]
