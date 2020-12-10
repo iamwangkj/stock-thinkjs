@@ -1,0 +1,1 @@
+{"version":3,"file":"checkAccess.js","sourceRoot":"","sources":["../../src/middleware/checkAccess.ts"],"names":[],"mappings":";;AAEA,kBAAe,CAAC,OAAe,EAAE,GAAsB,EAAE,EAAE;IACzD,OAAO,CAAC,GAAkB,EAAE,IAAgB,EAAE,EAAE;QAC9C,OAAO,IAAI,EAAE,CAAA;IACf,CAAC,CAAA;AACH,CAAC,CAAA"}
