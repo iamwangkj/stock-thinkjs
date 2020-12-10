@@ -4,6 +4,7 @@ import cheerio from 'cheerio'
 
 export default class extends baseController {
   async saveAction () {
+    console.log('爬取政策')
     try {
       const resList = [] // 存放结果的数组
       const url = 'http://www.gov.cn/zhengce/index.htm'
@@ -37,6 +38,7 @@ export default class extends baseController {
         }
         i < resList.length - 1 ? ++i : isEnd = true
       }
+      console.log('插入条数', row)
       return this.success(null, `insert ${row} row`)
     } catch (error) {
       return this.fail(-1, error.message)

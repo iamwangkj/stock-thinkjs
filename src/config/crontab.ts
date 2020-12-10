@@ -7,11 +7,12 @@ export default [{
   }
 }, {
   // 分 时 日 月 周
-  cron: '1/* * * * *', // 每小时执行一次
-  handle: 'crontab/policy/save',
+  cron: '0 15 * * *',
+  handle: 'crontab/stock/saveTodayAll',
   type: 'all'
 }, {
-  cron: '0 15 * * *',
-  handle: 'crontab/stock/saveAll',
+  // 分 时 日 月 周
+  cron: '0 * * * *', // 每小时执行一次
+  handle: 'crontab/policy/save',
   type: 'all'
 }]
