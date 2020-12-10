@@ -1,22 +1,4 @@
 
-Application created by [ThinkJS](http://www.thinkjs.org)
-
-## Install dependencies
-
-```
-npm install
-```
-
-## Start server
-
-```
-npm start
-```
-
-## Deploy with pm2
-
-Use pm2 to deploy app on production enviroment.
-
-```
-pm2 startOrReload pm2.json
-```
+##### v1.0.0
+* 每天15点定时收集全部开盘股票数据，并保存到数据库
+* 每小时定时收集政策，并保存新的政策到数据库
