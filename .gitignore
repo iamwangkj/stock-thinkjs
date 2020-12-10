@@ -1,6 +1,5 @@
 dist/
 runtime/
-app/
 node_modules/
 
 # Logs

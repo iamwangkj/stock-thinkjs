@@ -4,7 +4,7 @@ function check (list) {
   const downList = []
   list.forEach((item) => {
     const { code, buy, sale } = item
-    const changePercent = ((sale.trade - buy.trade) / buy.trade * 100).toFixed(2)
+    const changePercent:any = ((sale.trade - buy.trade) / buy.trade * 100).toFixed(2)
     if (changePercent > 0) {
       console.log('涨', code, `${changePercent}%`)
       upList.push(item)

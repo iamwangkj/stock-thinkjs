@@ -15,8 +15,7 @@ function removeKechuang (list) {
 // 红T
 function getRedT (list) {
   return list.filter((item) => {
-    let { open, high, low, trade, changepercent } = item
-    changepercent = Number(changepercent)
+    let { open, high, low, trade } = item
     open = Number(open)
     high = Number(high)
     low = Number(low)
@@ -24,7 +23,8 @@ function getRedT (list) {
     const divH = Math.abs(trade - open)
     const lineUpH = Math.abs(high - trade)
     const lineDownH = open - low
-    return changepercent > 0 && (lineUpH / divH) < 0.05 && (lineDownH / divH) > 2
+    const up = (trade - open) > 0
+    return up && (lineUpH / divH) < 0.05 && (lineDownH / divH) > 2
   })
 }
 

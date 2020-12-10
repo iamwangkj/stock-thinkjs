@@ -7,14 +7,9 @@ export default class extends Base {
     try {
       const date = this.get('date')
       const list = await this.getAllStock(date)
-      console.log('list len=', list.length)
-      let res = []
-      // let res = stockSDK.filter.getBigAmount(list)
-      console.log('res1=', res)
-      // res = stockSDK.filter.removeST(list)
-      console.log('res2=', res)
+      let res = stockSDK.filter.getBigAmount(list)
+      res = stockSDK.filter.removeST(list)
       res = stockSDK.filter.getRedT(list)
-      console.log('res3=', res)
       return this.success(res, 'ok')
     } catch (err) {
       return this.fail(err.errno, err.message)
@@ -25,7 +20,6 @@ export default class extends Base {
     try {
       const date = this.get('date')
       const data = await this.getAllStock(date)
-      console.log('data=', data)
       return this.success(data, 'ok')
     } catch (err) {
       return this.fail(err.errno, err.message)
