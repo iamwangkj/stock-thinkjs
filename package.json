@@ -13,6 +13,7 @@
     "axios": "^0.21.0",
     "cheerio": "^1.0.0-rc.3",
     "dayjs": "^1.9.6",
+    "nodemailer": "^6.4.17",
     "think-cache": "^1.1.1",
     "think-cache-file": "^1.1.1",
     "think-mongo": "^2.1.0",

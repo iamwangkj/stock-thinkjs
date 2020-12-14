@@ -12,7 +12,7 @@ export default [{
   type: 'all'
 }, {
   // 分 时 日 月 周
-  cron: '0 * * * *', // 每小时执行一次
+  cron: '*/30 * * * *', // 每小时执行一次
   handle: 'crontab/policy/save',
   type: 'all'
 }]

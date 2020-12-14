@@ -1,6 +1,34 @@
 import baseController from '../base'
 import axios from 'axios'
 import cheerio from 'cheerio'
+import nodemailer from 'nodemailer'
+
+// 发送邮件函数
+async function sendMail (text = '空') {
+  try {
+    const user = 'tone_cn@163.com'// 自己的邮箱
+    const pass = 'LVXYNHGAKUVOOUVN' // qq邮箱授权码,如何获取授权码下面有讲
+    const to = 'ne.wkj@qq.com'// 对方的邮箱
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.163.com',
+      port: 25,
+      secure: false,
+      auth: {
+        user: user, // 用户账号
+        pass: pass // 授权码
+      }
+    })
+    await transporter.sendMail({
+      from: `新政策爬虫<${user}>`, // sender address
+      to: `<${to}>`, // list of receivers
+      subject: '有新政策', // Subject line
+      text: text // plain text body
+    })
+    console.log('邮件发送成功')
+  } catch (err) {
+    console.log('邮件发送失败')
+  }
+}
 
 export default class extends baseController {
   async saveAction () {
@@ -35,6 +63,8 @@ export default class extends baseController {
           console.log('数据库中没有该政策=', i)
           await model.add({ title, url, date })
           // 发通知，有新的政策发布了
+          const mailContent = `时间：${date}\n标题：${title}\n链接：${url}`
+          await sendMail(mailContent)
         }
         i < resList.length - 1 ? ++i : isEnd = true
       }
