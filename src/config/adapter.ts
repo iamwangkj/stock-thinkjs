@@ -3,8 +3,19 @@ import path from 'path'
 import nunjucks from 'think-view-nunjucks'
 import fileSession from 'think-session-file'
 import fileCache from 'think-cache-file'
+import { DateFile } from 'think-logger3'
 
-const isDev = think.env === 'development'
+export const logger = {
+  type: 'dateFile',
+  dateFile: {
+    handle: DateFile,
+    level: 'ALL',
+    absolute: true,
+    pattern: '-yyyy-MM-dd',
+    alwaysIncludePattern: true,
+    filename: path.join(think.ROOT_PATH, 'logs/stock-thinkjs.log')
+  }
+}
 
 export const cache = {
   type: 'file',
