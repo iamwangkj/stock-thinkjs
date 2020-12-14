@@ -6,6 +6,33 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const base_1 = __importDefault(require("../base"));
 const axios_1 = __importDefault(require("axios"));
 const cheerio_1 = __importDefault(require("cheerio"));
+const nodemailer_1 = __importDefault(require("nodemailer"));
+async function sendMail(text = '空') {
+    try {
+        const user = 'tone_cn@163.com';
+        const pass = 'LVXYNHGAKUVOOUVN';
+        const to = 'ne.wkj@qq.com';
+        const transporter = nodemailer_1.default.createTransport({
+            host: 'smtp.163.com',
+            port: 25,
+            secure: false,
+            auth: {
+                user: user,
+                pass: pass
+            }
+        });
+        await transporter.sendMail({
+            from: `新政策爬虫<${user}>`,
+            to: `<${to}>`,
+            subject: '有新政策',
+            text: text
+        });
+        console.log('邮件发送成功');
+    }
+    catch (err) {
+        console.log('邮件发送失败');
+    }
+}
 class default_1 extends base_1.default {
     async saveAction() {
         console.log('爬取政策');
@@ -38,6 +65,8 @@ class default_1 extends base_1.default {
                     row = row + 1;
                     console.log('数据库中没有该政策=', i);
                     await model.add({ title, url, date });
+                    const mailContent = `时间：${date}\n标题：${title}\n链接：${url}`;
+                    await sendMail(mailContent);
                 }
                 i < resList.length - 1 ? ++i : isEnd = true;
             }

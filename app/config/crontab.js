@@ -10,7 +10,7 @@ exports.default = [{
         handle: 'crontab/stock/saveTodayAll',
         type: 'all'
     }, {
-        cron: '0 * * * *',
+        cron: '0,30 * * * *',
         handle: 'crontab/policy/save',
         type: 'all'
     }];
