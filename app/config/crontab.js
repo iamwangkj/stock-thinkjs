@@ -14,4 +14,3 @@ exports.default = [{
         handle: 'crontab/policy/save',
         type: 'all'
     }];
-//# sourceMappingURL=crontab.js.map

@@ -3,16 +3,15 @@ import path from 'path'
 import nunjucks from 'think-view-nunjucks'
 import fileSession from 'think-session-file'
 import fileCache from 'think-cache-file'
-import { DateFile } from 'think-logger3'
+import { File } from 'think-logger3'
 
 export const logger = {
-  type: 'dateFile',
-  dateFile: {
-    handle: DateFile,
-    level: 'ALL',
+  type: 'file',
+  file: {
+    handle: File,
+    backups: 10,
     absolute: true,
-    pattern: '-yyyy-MM-dd',
-    alwaysIncludePattern: true,
+    maxLogSize: 50 * 1024, // 50M
     filename: path.join(think.ROOT_PATH, 'logs/stock-thinkjs.log')
   }
 }

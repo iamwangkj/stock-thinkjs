@@ -13,4 +13,3 @@ exports.default = {
     filter: filter_1.default,
     checker: checker_1.default
 };
-//# sourceMappingURL=index.js.map

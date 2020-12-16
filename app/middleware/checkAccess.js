@@ -5,4 +5,3 @@ exports.default = (options, app) => {
         return next();
     };
 };
-//# sourceMappingURL=checkAccess.js.map

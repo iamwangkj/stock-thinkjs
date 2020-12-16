@@ -7,8 +7,13 @@ const base_1 = __importDefault(require("../base"));
 const axios_1 = __importDefault(require("axios"));
 const cheerio_1 = __importDefault(require("cheerio"));
 const nodemailer_1 = __importDefault(require("nodemailer"));
-async function sendMail(text = '空') {
+async function sendMail(list = []) {
     try {
+        let html = '';
+        list.forEach((item) => {
+            const { title, url, date } = item;
+            html += `<p>（${date}）<a href="${url}">${title}</a></p>`;
+        });
         const user = 'tone_cn@163.com';
         const pass = 'LVXYNHGAKUVOOUVN';
         const to = 'ne.wkj@qq.com';
@@ -25,7 +30,7 @@ async function sendMail(text = '空') {
             from: `新政策爬虫<${user}>`,
             to: `<${to}>`,
             subject: '有新政策',
-            text: text
+            html: html
         });
         console.log('邮件发送成功');
     }
@@ -35,7 +40,7 @@ async function sendMail(text = '空') {
 }
 class default_1 extends base_1.default {
     async saveAction() {
-        console.log('爬取政策');
+        console.log('开始爬取政策');
         try {
             const resList = [];
             const url = 'http://www.gov.cn/zhengce/index.htm';
@@ -54,29 +59,29 @@ class default_1 extends base_1.default {
                 resList.push(item);
             });
             const model = this.mongo('policy_for_gwy');
-            let row = 0;
             let isEnd = false;
             let i = 0;
+            const newPolicyList = [];
             while (!isEnd) {
                 const item = resList[i];
                 const { title, url, date } = item;
-                const data = await model.where({ title }).find();
+                const data = await model.where({ title, url, date }).find();
                 if (think.isEmpty(data)) {
-                    row = row + 1;
-                    console.log('数据库中没有该政策=', i);
-                    await model.add({ title, url, date });
-                    const mailContent = `时间：${date}\n标题：${title}\n链接：${url}`;
-                    await sendMail(mailContent);
+                    newPolicyList.push(item);
                 }
                 i < resList.length - 1 ? ++i : isEnd = true;
             }
-            console.log('插入条数', row);
-            return this.success(null, `insert ${row} row`);
+            const newLen = newPolicyList.length;
+            console.log('新的政策条数', newLen);
+            if (newLen > 0) {
+                await model.addMany(newPolicyList);
+                await sendMail(newPolicyList);
+            }
+            return this.success(null, `insert ${newLen} row`);
         }
-        catch (error) {
-            return this.fail(-1, error.message);
+        catch (err) {
+            return this.fail(-1, err.message);
         }
     }
 }
 exports.default = default_1;
-//# sourceMappingURL=policy.js.map

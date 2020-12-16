@@ -20,4 +20,3 @@ function check(list) {
 exports.default = {
     check
 };
-//# sourceMappingURL=checker.js.map

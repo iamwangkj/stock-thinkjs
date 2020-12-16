@@ -9,4 +9,3 @@ class default_1 extends base_js_1.default {
     }
 }
 exports.default = default_1;
-//# sourceMappingURL=index.js.map

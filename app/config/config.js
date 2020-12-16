@@ -4,4 +4,3 @@ module.exports = {
     errnoField: 'code',
     errmsgField: 'msg'
 };
-//# sourceMappingURL=config.js.map

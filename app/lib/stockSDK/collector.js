@@ -104,4 +104,3 @@ exports.default = {
     getTodayAll,
     getHistory
 };
-//# sourceMappingURL=collector.js.map

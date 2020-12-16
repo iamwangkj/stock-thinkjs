@@ -37,4 +37,3 @@ function macd(ticks) {
 exports.default = {
     macd
 };
-//# sourceMappingURL=analyst.js.map

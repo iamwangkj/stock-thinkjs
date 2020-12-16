@@ -1,6 +1,8 @@
-dist/
-runtime/
 node_modules/
+runtime/
+
+# Editor
+.vscode
 
 # Logs
 logs

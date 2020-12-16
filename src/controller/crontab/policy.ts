@@ -4,8 +4,15 @@ import cheerio from 'cheerio'
 import nodemailer from 'nodemailer'
 
 // 发送邮件函数
-async function sendMail (text = '空') {
+async function sendMail (list = []) {
   try {
+    // 要发送的内容
+    let html = ''
+    list.forEach((item) => {
+      const { title, url, date } = item
+      html += `<p>（${date}）<a href="${url}">${title}</a></p>`
+    })
+
     const user = 'tone_cn@163.com'// 自己的邮箱
     const pass = 'LVXYNHGAKUVOOUVN' // qq邮箱授权码,如何获取授权码下面有讲
     const to = 'ne.wkj@qq.com'// 对方的邮箱
@@ -22,7 +29,7 @@ async function sendMail (text = '空') {
       from: `新政策爬虫<${user}>`, // sender address
       to: `<${to}>`, // list of receivers
       subject: '有新政策', // Subject line
-      text: text // plain text body
+      html: html // plain text body
     })
     console.log('邮件发送成功')
   } catch (err) {
@@ -32,7 +39,7 @@ async function sendMail (text = '空') {
 
 export default class extends baseController {
   async saveAction () {
-    console.log('爬取政策')
+    console.log('开始爬取政策')
     try {
       const resList = [] // 存放结果的数组
       const url = 'http://www.gov.cn/zhengce/index.htm'
@@ -51,27 +58,29 @@ export default class extends baseController {
         resList.push(item)
       })
       const model = this.mongo('policy_for_gwy')
-      let row = 0
       let isEnd = false
       let i = 0
+      const newPolicyList = []
       while (!isEnd) {
         const item = resList[i]
         const { title, url, date } = item
-        const data = await model.where({ title }).find()
+        const data = await model.where({ title, url, date }).find()
         if (think.isEmpty(data)) { // 如果数据库中没有找到该政策，即保存
-          row = row + 1
-          console.log('数据库中没有该政策=', i)
-          await model.add({ title, url, date })
-          // 发通知，有新的政策发布了
-          const mailContent = `时间：${date}\n标题：${title}\n链接：${url}`
-          await sendMail(mailContent)
+          newPolicyList.push(item)
         }
         i < resList.length - 1 ? ++i : isEnd = true
       }
-      console.log('插入条数', row)
-      return this.success(null, `insert ${row} row`)
-    } catch (error) {
-      return this.fail(-1, error.message)
+
+      const newLen = newPolicyList.length
+      console.log('新的政策条数', newLen)
+      if (newLen > 0) {
+        // 有新的政策发布了，插入数据库并发通知
+        await model.addMany(newPolicyList)
+        await sendMail(newPolicyList)
+      }
+      return this.success(null, `insert ${newLen} row`)
+    } catch (err) {
+      return this.fail(-1, err.message)
     }
   }
 }

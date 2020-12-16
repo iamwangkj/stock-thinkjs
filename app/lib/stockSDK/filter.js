@@ -78,4 +78,3 @@ exports.default = {
     getHighPrice,
     getHighRatio
 };
-//# sourceMappingURL=filter.js.map

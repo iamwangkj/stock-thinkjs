@@ -50,4 +50,3 @@ class default_1 extends base_1.default {
     }
 }
 exports.default = default_1;
-//# sourceMappingURL=girlImg.js.map

@@ -12,4 +12,3 @@ module.exports = [
     think_session_1.default,
     think_mongo_1.default(think.app)
 ];
-//# sourceMappingURL=extend.js.map

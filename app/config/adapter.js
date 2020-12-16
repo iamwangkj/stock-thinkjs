@@ -3,20 +3,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.model = exports.view = exports.session = exports.cache = exports.logger = void 0;
 require("thinkjs3-ts");
 const path_1 = __importDefault(require("path"));
 const think_view_nunjucks_1 = __importDefault(require("think-view-nunjucks"));
 const think_session_file_1 = __importDefault(require("think-session-file"));
 const think_cache_file_1 = __importDefault(require("think-cache-file"));
+const think_logger3_1 = require("think-logger3");
 exports.logger = {
-    type: 'dateFile',
-    dateFile: {
-        handle: DateFile,
-        level: 'ALL',
+    type: 'file',
+    file: {
+        handle: think_logger3_1.File,
+        backups: 10,
         absolute: true,
-        pattern: '-yyyy-MM-dd',
-        alwaysIncludePattern: true,
+        maxLogSize: 50 * 1024,
         filename: path_1.default.join(think.ROOT_PATH, 'logs/stock-thinkjs.log')
     }
 };
@@ -70,4 +69,3 @@ exports.model = {
         options: {}
     }
 };
-//# sourceMappingURL=adapter.js.map

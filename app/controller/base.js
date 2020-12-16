@@ -6,4 +6,3 @@ class default_1 extends thinkjs_1.think.Controller {
     }
 }
 exports.default = default_1;
-//# sourceMappingURL=base.js.map
