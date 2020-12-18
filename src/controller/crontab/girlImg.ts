@@ -5,8 +5,8 @@ import cheerio from 'cheerio'
 export default class extends baseController {
   // 获取每页的图片
   async getList (pageIndex) {
-    // https://www.mzitu.com/zipai/comment-page-478/#comments
     const resList = [] // 存放结果的数组
+    // const url = `https://www.mzitu.com/jiepai/comment-page-${pageIndex}/#comments`
     const url = `https://www.mzitu.com/zipai/comment-page-${pageIndex}/#comments`
     const res = await axios.get(url)
     const $ = cheerio.load(res.data)
@@ -34,7 +34,7 @@ export default class extends baseController {
       const pageTotal:number = $('.pagenavi-cm .page-numbers.current').text()
       console.log('pageTotal=', pageTotal)
 
-      const model = this.mongo('girl_zipai')
+      const model = this.mongo('girl_img')
       let i = 1
       let isEnd = false
       while (!isEnd) {
